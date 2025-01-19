@@ -4,4 +4,3 @@
     hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
     {{$slot}}
 </a>
-  

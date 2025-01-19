@@ -18,7 +18,7 @@
         <x-admin_sidebar/>
     <main class="p-4 md:ml-64 h-auto pt-20">
         <div class="mx-auto max-w-7x1 px-4 py-6 sm:px-6 lg:px-8">
-        {{$slot}}
+             {{$slot}}
         </div>
     </main>
   </div>

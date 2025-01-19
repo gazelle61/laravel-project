@@ -11,7 +11,7 @@ class StudentAdminController extends Controller
     {
         $student = Student::with(['grade','department'])->get();
 
-        return view('student-admin', [
+        return view('admin.student.index2', [
             'title' => 'Student Admin',
             'students' => $student,
         ]);

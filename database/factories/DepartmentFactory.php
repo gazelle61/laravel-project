@@ -18,7 +18,7 @@ class DepartmentFactory extends Factory
     {
         return [
             'name' => fake()->randomElements(['PPLG', 'Animasi 2D', 'Animasi 3D', 'Desain Grafis', 'Teknik Grafika']),
-            'desc' => fake()->paragraph(5),
+            'desc' => fake()->paragraph(1),
         ];
     }
 }
