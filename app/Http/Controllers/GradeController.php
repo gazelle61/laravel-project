@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Grade;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Http\Request;
 
 class GradeController extends Controller
 {

@@ -1,3 +1,3 @@
-<x-home_admin>
+<x-layout_admin>
 
-</x-home_admin>
+</x-layout_admin>

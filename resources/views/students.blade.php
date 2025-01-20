@@ -1,4 +1,4 @@
-<x-layout>
+  <x-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
     <div class="overflow-x-auto">
     <table class="min-w-full bg-white border border-gray-200">
