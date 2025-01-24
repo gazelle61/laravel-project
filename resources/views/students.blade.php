@@ -9,7 +9,7 @@
                 <th>Grade</th>
                 <th>Department</th>
                 <th>Email</th>
-                <th>Alamat</th>
+                <th>Adress</th>
               </tr>
         </thead>
         <tbody>

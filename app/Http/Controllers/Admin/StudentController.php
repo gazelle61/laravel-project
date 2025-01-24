@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Grade;
 use App\Models\Student;
+use App\Models\Grade;
 use App\Models\Department;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
@@ -16,11 +16,11 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::with('grade')->latest()->get();
+        
         return view('admin.student.index2', compact('students'), [
             'title' => "Students",
             'students' => $students
 
-            // 'students' => $students
         ]);
     }
 
@@ -30,7 +30,7 @@ class StudentController extends Controller
     public function create()
     {
         return view('admin.student.create', [
-            "title" => "Create New Data",
+            "title" => "Create New Student Data",
             'grades' => Grade::all(),
             'departments' => Department::all(),
         ]);

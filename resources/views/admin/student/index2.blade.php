@@ -38,9 +38,11 @@
                     <th scope="col" class="px-4 py-3">No</th>
                     <th scope="col" class="px-4 py-3">Name</th>
                     <th scope="col" class="px-4 py-3">Grade</th>
+                    {{-- <th scope="col" class="px-4 py-3">Department</th> --}}
                     <th scope="col" class="px-4 py-3">Email</th>
-                    <th scope="col" class="px-4 py-3">Phone</th>
-                    <th scope="col" class="px-4 py-3">Action</th>
+                    {{-- <th scope="col" class="px-4 py-3">Adress</th> --}}
+                    {{-- <th scope="col" class="px-4 py-3">Phone</th> --}}
+                    <th scope="col" class="px-4 py-3">Detail</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -50,7 +52,7 @@
                         <td class="py-3 px-4">{{ $student->name }}</td>
                         <td class="py-3 px-4">{{ $student->grade->name }}</td>
                         <td class="py-3 px-4">{{ $student->email }}</td>
-                        <td class="py-3 px-4">{{ $student->telepon }}</td>
+                        {{-- <td class="py-3 px-4">{{ $student->telepon }}</td> --}}
                         <td class="py-3 px-4 flex space-x-4">
 
                             <button
@@ -59,8 +61,8 @@
                                 data-name="{{ $student->name }}"
                                 data-grade="{{ $student->grade->name }}"
                                 data-email="{{ $student->email }}"
-                                data-phone="{{ $student->telepon }}"
-                                data-address="{{ $student->address }}"
+                                {{-- data-phone="{{ $student->telepon }}"
+                                data-address="{{ $student->address }}" --}}
                                 data-modal-target="readStudentModal"
                                 data-modal-toggle="readStudentModal"
                                 type="button">
@@ -160,11 +162,11 @@
                     <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Email</dt>
                     <dd id="modalEmail" class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400"></dd>
 
-                    <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Phone</dt>
+                    {{-- <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Phone</dt>
                     <dd id="modalPhone" class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400"></dd>
 
                     <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Address</dt>
-                    <dd id="modalAddress" class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400"></dd>
+                    <dd id="modalAddress" class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400"></dd> --}}
                 </dl>
                 <div class="flex justify-between items-center">
                     <div class="flex items-center space-x-3 sm:space-x-4">
@@ -213,8 +215,8 @@
             const modalName = document.getElementById('modalName');
             const modalGrade = document.getElementById('modalGrade');
             const modalEmail = document.getElementById('modalEmail');
-            const modalPhone = document.getElementById('modalPhone');
-            const modalAddress = document.getElementById('modalAddress');
+            // const modalPhone = document.getElementById('modalPhone');
+            // const modalAddress = document.getElementById('modalAddress');
 
             modalDetailBtns.forEach(button => {
                 button.addEventListener('click', function() {
@@ -222,15 +224,15 @@
                     const name = button.getAttribute('data-name');
                     const grade = button.getAttribute('data-grade');
                     const email = button.getAttribute('data-email');
-                    const phone = button.getAttribute('data-phone');
-                    const address = button.getAttribute('data-address');
+                    // const phone = button.getAttribute('data-phone');
+                    // const address = button.getAttribute('data-address');
 
                     // Isi modal dengan data yang diambil
                     modalName.textContent = name;
                     modalGrade.textContent = grade;
                     modalEmail.textContent = email;
-                    modalPhone.textContent = phone;
-                    modalAddress.textContent = address;
+                    // modalPhone.textContent = phone;
+                    // modalAddress.textContent = address;
 
                     // Tampilkan modal
                     modal.classList.remove('hidden');
