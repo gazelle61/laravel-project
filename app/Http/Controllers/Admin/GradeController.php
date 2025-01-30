@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Grade;
-use App\Models\Student;
 use App\Models\Department;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class GradeController extends Controller
@@ -15,10 +15,11 @@ class GradeController extends Controller
      */
     public function index()
     {
-        $grades = Grade::with('grade')->latest()->get();
-        return view('admin.grade.index2', compact('grades'), [
+        $grades = Grade::all();
+
+        return view('admin.grade.index', [
             'title' => "Grades",
-            'grades' => $grades
+            'grades' => $grades->load(['students', 'department'])
         ]);
     }
 
@@ -29,7 +30,6 @@ class GradeController extends Controller
     {
         return view('admin.grade.create', [
             "title" => "Create New Grade Data",
-            'students' => Student::all(),
             'departments' => Department::all(),
         ]);
     }
@@ -40,16 +40,16 @@ class GradeController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'number' => 'required|string|max:255',
             'department_id' => 'required|exists:departments,id',
         ]);
 
         $grade = Grade::create([
-            'name' => $validated['name'],
+            'name' => $validated['number'],
             'department_id' => $validated['department_id'],
         ]);
 
-        return redirect('/admin/grades')->with('success', 'Grade created successfully.');
+        return redirect('/admin/grades/')->with('success', 'Grade created successfully.');
     }
 
     /**
@@ -67,13 +67,12 @@ class GradeController extends Controller
     {
         $grade = Grade::findOrFail($id);
 
-        $students = Student::all();
+        $departments = Department::all();
 
         return view('admin.grade.edit', [
             'title' => 'Edit Grade Data',
             'grade' => $grade,
-            'departments' => $departments,
-
+            'departments' => Department::all(),
         ]);
     }
 
@@ -94,7 +93,7 @@ class GradeController extends Controller
             'department_id' => $validated['department_id'],
         ]);
 
-        return redirect('/admin/grades')->with('success', 'Grade updated successfully.');
+        return redirect('/admin/grades/')->with('success', 'Grade updated successfully.');
     }
 
     /**
@@ -102,11 +101,6 @@ class GradeController extends Controller
      */
     public function destroy(string $id)
     {
-        $grade = Grade::findOrFail($id);
-
-        $grade->delete();
-
-        return redirect('/admin/grades')->with('success', 'Grade deleted successfully.');
-
+        //
     }
 }

@@ -1,10 +1,10 @@
-<x-home_admin>
+<x-admin_layout>
     <x-slot:title>{{ $title }}</x-slot:title>
     <div class="overflow-x-auto">
         <table class="min-w-full bg-white border border-gray-200">
         <thead>
             <tr>
-                <th>No</th>
+                <th>Num</th>
                 <th>Grade Name</th>
                 <th>Student</th>
                 <th>Department</th>
@@ -28,4 +28,4 @@
           </tbody>
         </table>
     </div>
-</x-home_admin>
+</x-admin_layout>

@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Student;
 use App\Models\Grade;
-use App\Models\Department;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -16,8 +16,8 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::with('grade')->latest()->get();
-        
-        return view('admin.student.index2', compact('students'), [
+
+        return view('admin.student.index', compact('students'), [
             'title' => "Students",
             'students' => $students
 
@@ -32,7 +32,6 @@ class StudentController extends Controller
         return view('admin.student.create', [
             "title" => "Create New Student Data",
             'grades' => Grade::all(),
-            'departments' => Department::all(),
         ]);
     }
 

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Ad_min;
 
 use App\Models\Student;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class StudentAdminController extends Controller
@@ -11,7 +12,7 @@ class StudentAdminController extends Controller
     {
         $student = Student::with(['grade','department'])->get();
 
-        return view('admin.student.index2', [
+        return view('admin.student.index', [
             'title' => 'Student Admin',
             'students' => $student,
         ]);

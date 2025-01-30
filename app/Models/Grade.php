@@ -12,14 +12,20 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Grade extends Model
 {
     use HasFactory;
+    protected $fillable = ["name", "department_id"];
 
     public function students(): HasMany
     {
-        return $this->hasMany(Student::class); 
+        return $this->hasMany(Student::class);
     }
 
     public function department(): BelongsTo
     {
         return $this->belongsTo(Department::class);
+    }
+
+    public function relation()
+    {
+        
     }
 }

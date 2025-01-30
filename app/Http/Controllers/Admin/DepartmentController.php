@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Department;
-use App\Models\Student;
-use App\Models\Grade;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
@@ -15,11 +14,9 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $departments = Department::with('student')->latest()->get();
-
-        return view('admin.department.index2', compact('departments'), [
+        return view('admin.department.index', [
             'title' => "Departments",
-            'departments' => $departments
+            'departments' => Department::all(),
 
         ]);
     }
@@ -31,8 +28,6 @@ class DepartmentController extends Controller
     {
         return view('admin.department.create', [
             "title" => "Create New Department Data",
-            'students' => Student::all(),
-            'grades' => Grade::all(),
         ]);
     }
 
@@ -44,17 +39,17 @@ class DepartmentController extends Controller
         // Validasi data yang dikirimkan
         $validated = $request->validate([
             'name'      => 'required|string|max:255',
-            'desc'  => 'required',
+            'desc'      => 'required',
         ]);
 
         // Simpan data student ke dalam tabel students
-        $student = Student::create([
+        $department = Department::create([
             'name' => $validated['name'],
             'desc' => $validated['desc'],
         ]);
 
         // Redirect atau response sukses
-        return redirect('/admin/departments')->with('success', 'Student created successfully.');
+        return redirect('/admin/departments/')->with('success', 'Department created successfully.');
     }
 
     /**
@@ -72,14 +67,10 @@ class DepartmentController extends Controller
     {
         $departments = Department::findOrFail($id);
 
-        // Ambil data grades untuk pilihan pada form
-        $grades = Grade::all();
-
         // Tampilkan halaman edit dengan data siswa dan grades
         return view('admin.department.edit', [
             'title' => 'Edit Department Data',
             'department' => $departments,
-            'grades' => $grades
         ]);
     }
 
@@ -94,17 +85,16 @@ class DepartmentController extends Controller
             'desc'  => 'required',
         ]);
 
-        // Cari data siswa berdasarkan ID
-        $student = Student::findOrFail($id);
+        $department = Department::findOrFail($id);
 
         // Update data siswa
-        $student->update([
+        $department->update([
             'name'     => $validated['name'],
             'desc' => $validated['desc'],
         ]);
 
         // Redirect kembali dengan pesan sukses
-        return redirect('/admin/departments')->with('success', 'Department updated successfully.');
+        return redirect('/admin/departments/')->with('success', 'Department updated successfully.');
     }
 
 
@@ -113,7 +103,7 @@ class DepartmentController extends Controller
      */
     public function destroy(string $id)
     {
-        
+        //
     }
 
 }

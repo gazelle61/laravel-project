@@ -5,7 +5,7 @@
         <table class="min-w-full bg-white border border-gray-200">
             <thead>
                 <tr class="bg-gray-200 text-gray-700 uppercase text-sm leading-normal">
-                    <th class="py-2 px-4 border-b">ID</th>
+                    <th class="py-2 px-4 border-b">Num</th>
                     <th class="py-2 px-4 border-b">Name</th>
                     <th class="py-2 px-4 border-b">Description</th>
                 </tr>

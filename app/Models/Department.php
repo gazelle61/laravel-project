@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Department extends Model
 {
     use HasFactory;
+    protected $fillable = ["name", "desc"];
 
     public function students(): HasMany
     {
